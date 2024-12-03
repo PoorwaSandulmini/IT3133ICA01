@@ -1,6 +1,5 @@
 import '../assets/CSS/layout.css';
 import {useState} from 'react';
-
 export default function Product(props){
     const[quantity,setQuantity]=useState(0);
     const addItem=()=>{
@@ -14,7 +13,6 @@ export default function Product(props){
             props.setCart((prev)=>([...prev,item]));
         }
     }
-    
     return(
         <div className="grid-item">
 
