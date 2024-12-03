@@ -4,7 +4,6 @@ import {flowers} from './FlowerDB';
 import Product from './Product';
 import Cart from './Cart';
 
-
 export default function Products(){
    const[cart,setCart]=useState([]);
    const[grandPrice,setGrandPrice]=useState(0);
