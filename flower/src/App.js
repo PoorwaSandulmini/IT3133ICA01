@@ -1,15 +1,12 @@
+import './assets/CSS/layout.css';
 import Products from './components/Products';
-import Cart from './components/Cart';
-import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Products />
-      <Cart />
+    <div className="main-grid-container">
+      <Products/>
     </div>
   );
 }
 
 export default App;
-

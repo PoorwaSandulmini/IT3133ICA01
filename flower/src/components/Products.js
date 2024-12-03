@@ -1,46 +1,35 @@
-import React, { useState } from 'react';
+import '../assets/CSS/layout.css';
+import { useState } from 'react';
+import {flowers} from './FlowerDB';
 import Product from './Product';
 import Cart from './Cart';
-import { flowers } from './FlowerDB';
-import '../assets/CSS/layout.css';
 
-export default function Products() {
-  const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = (product, quantity) => {
-    const qty = parseInt(quantity, 10);
-    if (!qty || qty <= 0) return;
+export default function Products(){
+   const[cart,setCart]=useState([]);
+   const[grandPrice,setGrandPrice]=useState(0);
+    return(
+        <>
+            <div className="item1">
+                <h1>Flower Shop</h1>
+            </div>
+            <div className="item2">
+                <h4 className="card-title">Buy flowers</h4>
+                <div className="grid-container">
+                    {
+                        flowers.map((flower)=>(
+                            <Product flower={flower} setCart={setCart} setGprice={setGrandPrice} gPrice={grandPrice}/>
+                        ))
+                    }
+                </div>
 
-    const existingItem = cartItems.find(item => item.id === product.id);
-    if (existingItem) {
-      setCartItems(
-        cartItems.map(item =>
-          item.id === product.id
-            ? { ...item, qty: item.qty + qty }
-            : item
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...product, qty }]);
-    }
-  };
+            </div>
+            <div className="item3">
+                {
+                <Cart cart={cart} gPrice={grandPrice}/>
+                }
+            </div>
+        </>
+    );
 
-  return (
-    <>
-      <div className="item1">
-        <h1>Flower Shop</h1>
-      </div>
-      <div className="item2">
-        <h4 className="card-title">Buy flowers</h4>
-        <div className="grid-container">
-          {flowers.map(flower => (
-            <Product key={flower.id} flower={flower} addToCart={addToCart} />
-          ))}
-        </div>
-      </div>
-      <div className="item3" >
-        <Cart cartItems={cartItems} />
-      </div>
-    </>
-  );
 }
